@@ -1,51 +1,53 @@
-{
+// {
 	// See https://go.microsoft.com/fwlink/?LinkId=733558
 	// for the documentation about the tasks.json format
-	"version": "2.0.0",
-	"tasks": [
-	    {
-		"type": "shell",
-		"label": "clang++ build active file",
-		"command": "clang++",
-		"args": [
-		    "-std=c++17",
-		    "-stdlib=libc++",
-		    "-g",
-		    "${file}",
-		    "-o",
-		    "${fileDirname}/${fileBasenameNoExtension}"
-		],
-		"options": {
-		    "cwd": "${workspaceFolder}"
-		},
-		"problemMatcher": ["$gcc"],
-		"group": {
-		    "kind": "build",
-		    "isDefault": true
-		}
-	    }
-	]
-}
-
-// {
 // 	"version": "2.0.0",
 // 	"tasks": [
-// 	  {
+// 	    {
 // 		"type": "shell",
-// 		"label": "cl.exe build active file",
-// 		"command": "cl.exe",
+// 		"label": "clang++ build active file",
+// 		"command": "clang++",
 // 		"args": [
-// 		  "/Zi",
-// 		  "/EHsc",
-// 		  "/Fe:",
-// 		  "${fileDirname}\\${fileBasenameNoExtension}.exe",
-// 		  "${file}"
+// 		    "-std=c++17",
+// 		    "-stdlib=libc++",
+// 		    "-g",
+// 		    "${file}",
+// 		    "-o",
+// 		    "${fileDirname}/${fileBasenameNoExtension}"
 // 		],
-// 		"problemMatcher": ["$msCompile"],
+// 		"options": {
+// 		    "cwd": "${workspaceFolder}"
+// 		},
+// 		"problemMatcher": ["$gcc"],
 // 		"group": {
-// 		  "kind": "build",
-// 		  "isDefault": true
+// 		    "kind": "build",
+// 		    "isDefault": true
 // 		}
-// 	  }
+// 	    }
 // 	]
-//   }
+// }
+
+{
+	"version": "2.0.0",
+	"tasks": [
+	  {
+		"type": "shell",
+		"label": "cl.exe build active file",
+		"command": "cl.exe",
+		"args": [
+		  "/Zi",
+		  "/EHsc",
+		  "/Fe:",
+		//   "/I:",
+		//   "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\VC\\Tools\\MSVC\\14.24.28314\\include\\**",
+		  "${fileDirname}/${fileBasenameNoExtension}.exe",
+		  "${file}"
+		],
+		"problemMatcher": ["$msCompile"],
+		"group": {
+		  "kind": "build",
+		  "isDefault": true
+		}
+	  }
+	]
+}
