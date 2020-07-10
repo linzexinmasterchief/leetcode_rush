@@ -1,4 +1,4 @@
-\.exe
-\.ilk
-\pdb
-\obj
+*.exe
+*.ilk
+*.pdb
+*.obj
