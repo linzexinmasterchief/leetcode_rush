@@ -10,18 +10,41 @@ struct ListNode {
 class Solution {
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-        ListNode* ans;
-        ListNode node = *ans;
-        node.val = l1 -> val + l2 -> val;
-        if (l1 != NULL && l2 != NULL) {
-            node.next = addTwoNumbers(l1 -> next, l2 -> next);
+        // add value of l1 node to l2 node
+        (*l2).val = (*l1).val + (*l2).val;
+        // carry
+        int carry = 0;
+        if ((*l2).val >= 10) {
+            carry = (*l2).val / 10;
+            (*l2).val = (*l2).val % 10;
         }
-        
-        return ans;
-        
+        if (carry > 0) {
+            // check if current l2 node has next node to store carry
+            if (l2 -> next == NULL){
+                // if no, create a new node and assign carry as it's value
+                (*l2).next = new ListNode(carry);
+            }else{
+                // if yes, add carry to the value of the next node
+                (*(l2 -> next)).val += carry;
+            }
+        }
+        // make sure if one list ended earlier than the other one,
+        // fill the empty space with a temp node with val 0
+        if (l1 -> next != NULL && l2 -> next != NULL) {
+            (*l2).next = addTwoNumbers(l1 -> next, l2 -> next);
+        }else if (l1 -> next == NULL && l2 -> next != NULL) {
+            (*l2).next = addTwoNumbers(new ListNode(0), l2 -> next);
+        }else if (l1 -> next != NULL && l2 -> next == NULL) {
+            (*l2).next = addTwoNumbers(l1 -> next, new ListNode(0));
+        }else if (l1 -> next == NULL && l2 -> next == NULL) {
+            // only exit when both list are ended
+            return l2;
+        }
+        return l2;
     }
 };
 
+// generate link list from number
 ListNode* num_to_link_list(int num) {
     // ListNode* np = (ListNode*) malloc(sizeof(ListNode));
     ListNode* np = new ListNode(0);
@@ -36,9 +59,16 @@ ListNode* num_to_link_list(int num) {
     return np;
 }
 
+void print_link_list(ListNode* node) {
+    if (node -> next) {
+        print_link_list(node -> next);
+    }
+    cout << (*node).val;
+}
+
 int main(void){
-    int a = 123;
-    int b = 234;
+    int a = 2334;
+    int b = 843;
     cout << "lalalallalalla" << endl;
 
     ListNode* l1 = num_to_link_list(a);
@@ -47,13 +77,7 @@ int main(void){
     auto s = Solution();
     auto ans = s.addTwoNumbers(l1, l2);
     cout << "----------------" << endl;
-    ListNode l = ListNode(0);
-    ListNode *np = ans;
-    while (np != NULL) {
-        l = *np;
-        cout << l.val << endl;
-        np = l.next;
-    }
+    print_link_list(ans);
 
     return 0;
 }
