@@ -4,5 +4,6 @@
         "iostream": "cpp",
         "xstring": "cpp",
         "unordered_set": "cpp"
-    }
+    },
+    "python.pythonPath": "D:\\Anaconda3\\python.exe"
 }
