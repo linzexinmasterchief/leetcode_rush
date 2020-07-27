@@ -5,7 +5,6 @@
 #include <unordered_set>
 #include <algorithm>
 
-// use a linked list of linked list for this problem
 using namespace std;
 
 class Solution {
